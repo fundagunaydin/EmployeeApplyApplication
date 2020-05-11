@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BasvuruModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ILCELER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ILID" Type="Int32" />
+    <Property Name="ILCEADI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ILLER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ILADI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PERSONEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ADSOYAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ILID" Type="Int32" />
+    <Property Name="ILCEID" Type="Int32" />
+    <Property Name="CINSIYET" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DOGUMTARIHI" Type="DateTime" Precision="3" />
+    <Property Name="ACIKLAMA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PERSONELISBASVURULARI">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PERSONELID" Type="Int32" />
+    <Property Name="ILCEADI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BASVURUTARIHI" Type="DateTime" Precision="3" />
+    <Property Name="ILID" Type="Int32" />
+    <Property Name="SEYAHATENGELIYOK" Type="Boolean" />
+    <Property Name="ISYERIADI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="POZISYON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ACIKLAMA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="BasvuruEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ILCELERs" EntityType="Self.ILCELER" />
+    <EntitySet Name="ILLERs" EntityType="Self.ILLER" />
+    <EntitySet Name="PERSONELs" EntityType="Self.PERSONEL" />
+    <EntitySet Name="PERSONELISBASVURULARIs" EntityType="Self.PERSONELISBASVURULARI" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+  </EntityContainer>
+</Schema>

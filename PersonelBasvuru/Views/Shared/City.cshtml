@@ -1,0 +1,11 @@
+﻿@model PersonelBasvuru.Models.ILCELER
+
+<option value="">ILCE SECINIZ</option>
+@if (ViewBag.slist != null)
+{
+    foreach (var item in ViewBag.slist)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}
+

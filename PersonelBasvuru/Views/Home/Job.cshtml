@@ -1,0 +1,62 @@
+﻿@model PersonelBasvuru.Models.PERSONELISBASVURULARI
+
+@{
+    ViewBag.Title = "BasvuruUygulamasi";
+}
+
+<div class="row">
+    <br>
+    <button type="button" title="Yeni Personel" value="Yeni Personel" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Home")'">Yeni Personel</button>
+    <button type="button" title="Başvuruları Kaydet" value="Basvuruları Kaydet" class="btn btn-danger ml-3" onclick="location.href='@Url.Action("Personel", "Home")'">Basvuruları Kaydet</button>
+
+    <br><br>
+
+
+    @using (Html.BeginForm("SaveBasvuru", "Home", FormMethod.Post))
+    {
+
+        @Html.Hidden("PERSONELID")
+
+        <div class="form-group">
+            <label for="datepicker">Basvuru Tarihi</label>
+            @Html.TextBox("BASVURUTARIHI", "Tarih Seçiniz", new { @class = "form-control", @id = "datepicker",
+
+           required = "required" })
+        </div>
+        <div class="form-group">
+            <label for="city">İl</label>
+            @Html.DropDownList("ILID", null, "İl Seçiniz", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="SEYAHATENGELIYOK">Seyahat Engeli Yok</label><br>
+            Seyahat Engeli Yok:@Html.CheckBox("SEYAHATENGELIYOK", true)
+        </div>
+        <div class="form-group">
+            <label for="ISYERIADI">İşyeri Adı</label>
+            @Html.TextBox("ISYERIADI", null, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="POZISYON">Pozisyon</label>
+            @Html.TextBox("POZISYON", null, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="ACIKLAMA">Açıklama</label>
+            @Html.TextArea("ACIKLAMA", "Açıklama", new { @class = "form-control" })
+        </div>
+        <button type="submit" value="Submit" class="btn btn-primary">KAYDET</button>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="color:green">
+                @ViewBag.Message
+
+            </div>
+        </div>
+
+    }
+
+</div>
+
+<script>
+    $('#datepicker').datepicker();
+
+</script>

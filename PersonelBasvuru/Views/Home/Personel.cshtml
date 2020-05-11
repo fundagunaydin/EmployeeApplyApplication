@@ -1,0 +1,26 @@
+﻿@model IEnumerable<PersonelBasvuru.Models.ViewModel>
+   <h3>Personel Listesi</h3>
+    <br />
+    <table class="table table-striped">
+        <tr>
+            <td><b>Ad Soyad</b></td>
+            <td><b>İl</b></td>
+            <td><b>İlçe</b></td>
+            <td><b>Cinsiyet</b></td>
+            <td><b>Açıklama</b></td>
+            <td><b>Basvuru Detay</b></td>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.employees.ADSOYAD</td>
+            <td>@item.country.ILADI</td>
+            <td>@item.city.ILCEADI</td>
+            <td>@item.employees.CINSIYET</td>
+            <td>@item.employees.ACIKLAMA</td>
+            <td>@Html.ActionLink("Detay", "PersonelBasvuru", new { Id = @item.employees.ID})</td>
+
+        </tr>
+        }
+    </table>

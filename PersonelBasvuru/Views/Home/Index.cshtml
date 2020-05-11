@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Basvuru Uygulaması";
+}
+
+<div class="row">
+    <br>
+
+    @using (Html.BeginForm("SaveRecord", "Home", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label for="ADSOYAD">Adı Soyadı</label>
+            @Html.TextBox("ADSOYAD", null, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="ILLER">İli</label>
+            @Html.DropDownList("ILID",null, "İl Seçiniz", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="text">İlçesi</label>
+            @Html.DropDownList("ILCEID", new SelectList(""), "Ilce Seçiniz", new { @class = "form-control", @id = "city" })
+        </div>
+        <div class="form-group">
+            <label for="text">Cinsiyeti</label><br>
+            Kız:   @Html.RadioButton("CINSIYET", "Kız")
+            Erkek: @Html.RadioButton("CINSIYET", "Erkek")
+        </div>
+        <div class="form-group">
+            <label for="datepicker">Doğum Tarihi</label>
+
+
+            @Html.TextBox("DOGUMTARIHI", "Tarih Giriniz", new { @class = "form-control datepicker" })
+
+        </div>
+        <div class="form-group">
+            <label for="validationTextarea">Açıklama</label>
+            @Html.TextArea("ACIKLAMA", "Açıklama", new { @class = "form-control" })
+        </div>
+        <button type="submit" value="Submit" class="btn btn-primary">KAYDET</button>
+       
+
+    }
+
+</div>
+
+<script>
+  
+    $(".datepicker").datepicker();
+    $('.datepicker').change(function () {
+        console.log($(this).val());
+    })
+   
+         $('#ILID').change(function () {
+             let selectedCountry = $(this).val();
+             if (selectedCountry) {
+                 $.ajax({
+                     url: "/Home/GetIlce/" + selectedCountry,
+                     contentType: 'html',
+                     success: function (response) {
+                         $("#city").empty();
+                         $("#city").append(response);
+                     }
+                 });
+             }
+             else {
+                 $("#city").empty();
+             }
+    });
+
+</script>

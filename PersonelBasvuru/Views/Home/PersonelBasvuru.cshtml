@@ -1,0 +1,37 @@
+﻿
+@model IEnumerable<PersonelBasvuru.Models.ViewModel>
+<h3>Personel Basvuruları</h3>
+<table class="table table-striped">
+    <tr>
+        <td><b>İl</b></td>
+        <td><b>Basvuru Tarihi</b></td>
+        <td><b>Seyahat Engeli Yok</b></td>
+        <td><b>İşyeri Adı</b></td>
+        <td><b>Pozisyon</b></td>
+        <td><b>Açıklama</b></td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.country.ILADI.</td>
+        <td>@item.employeejob.BASVURUTARIHI.Value.ToString("dd/MM/yyyy")</td>
+        <td>
+            @switch (@item.employeejob.SEYAHATENGELIYOK)
+            {
+                case true:<p>Yok</p>
+                    break;
+                case false:<p>Var</p>
+                    break;
+            }
+
+        </td>
+        <td>@item.employeejob.ISYERIADI</td>
+        <td>@item.employeejob.POZISYON</td>
+        <td>@item.employeejob.ACIKLAMA</td>
+    </tr>
+    }
+</table>
+
+
+
